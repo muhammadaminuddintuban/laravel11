@@ -46,9 +46,16 @@ class DatabaseSeeder extends Seeder
         //     'body' =>'Some seeding operations may cause you to alter or lose data. In order to protect you from running seeding commands against your production database, you will be prompted for confirmation before the seeders are executed in the'
         // ]);
 
+        // Post::factory(100)->recycle([
+        //     User::factory(5)->create(),
+        //     Category::factory(3)->create()
+        // ])->create();
+
+        // CARA MEMANGGIL SEEDER TERPISAH
+        $this->call([CategorySeeder::class, UserSeeder::class]);
         Post::factory(100)->recycle([
-            User::factory(5)->create(),
-            Category::factory(3)->create()
+           Category::all(),
+           User::all()
         ])->create();
     }
 }
